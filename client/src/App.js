@@ -23,7 +23,7 @@ export default function App() {
             <Register/>
           </Route>
          <Switch >
-          <Route path="/" exact="true" >
+          <Route exact path="/" >
               <Home/>
           </Route>   
         </Switch>  

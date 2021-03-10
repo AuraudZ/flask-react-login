@@ -1,9 +1,8 @@
 import React,{ useState } from 'react'
 import {Flex,Box,Heading,FormControl,FormLabel,Input, Button, } from '@chakra-ui/core';
-// import { userLogin } from '../utils/mockApi';
 import ErrorMessage from '../components/ErrorMessage'; 
 import {login, useAuth, logout} from "../auth"
-import { Redirect,Route } from 'react-router';
+import { Redirect } from 'react-router';
 export default function Login() {
   const [username,setUsername]  = useState('');
   const [password,setPassword] =  useState('')
@@ -22,8 +21,7 @@ export default function Login() {
       .then(token => {
         if (token.access_token){
           login(token)
-          console.log(token)  
-                  
+          console.log(token)     
         }
         else if (response  =>  response.status === '401') { 
           setError("Invalid Login Info") 
@@ -42,15 +40,7 @@ export default function Login() {
     event.preventDefault()
     //alert(`Username: ${username} & Password: ${password}`);
   }
-  const PrivateRoute = ({ component: Component, ...rest }) => {
-    const [logged] = useAuth();
-  
-    return <Route {...rest} render={(props) => (
-      logged
-        ? <Component {...props} />
-        : <Redirect to='/login' />
-    )} />
-  } 
+   
   const [logged] = useAuth();
        return(           
       <div>
@@ -91,7 +81,6 @@ export default function Login() {
               <Button onClick={() => logout()}Logout>
                Logout
               </Button>  
-              <PrivateRoute/>
               </div>
             }
             </Box>
