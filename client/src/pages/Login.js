@@ -9,14 +9,12 @@ export default function Login() {
   const [username,setUsername]  = useState('');
   const [password,setPassword] =  useState('')
   const [error] = useState('');
- 
   const onSubmitClick = (e)=>{
     e.preventDefault()
     console.log("You pressed login")
     let opts = {
       'username': username,
-      'password': password
-    }
+      'password': password }
     console.log(opts)
     fetch('/api/login', {
       method: 'post',
