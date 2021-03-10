@@ -1,14 +1,13 @@
 import React,{ useState } from 'react'
-import {Flex,Box,Heading,FormControl,FormLabel,Input, Button,  CircularProgress, Text} from '@chakra-ui/core';
+import {Flex,Box,Heading,FormControl,FormLabel,Input, Button, } from '@chakra-ui/core';
 // import { userLogin } from '../utils/mockApi';
 import ErrorMessage from '../components/ErrorMessage'; 
-import {login, useAuth, logout,authFetch} from "../auth"
+import {login, useAuth, logout} from "../auth"
 import { Redirect,Route } from 'react-router';
-import Secret from  './Secret'
 export default function Login() {
   const [username,setUsername]  = useState('');
   const [password,setPassword] =  useState('')
-  const [error] = useState('');
+  const [error,setError] = useState('');
   const onSubmitClick = (e)=>{
     e.preventDefault()
     console.log("You pressed login")
@@ -26,10 +25,12 @@ export default function Login() {
           console.log(token)  
                   
         }
-        else {
-          console.log("Please type in correct username/password")
+        else if (response  =>  response.status === '401') { 
+          setError("Invalid Login Info") 
+          console.log(error)
         }
       }) }
+
   const handleUsernameChange = (e) => {
     setUsername(e.target.value)
   }
@@ -40,7 +41,6 @@ export default function Login() {
   const handleSubmit= async event => {
     event.preventDefault()
     //alert(`Username: ${username} & Password: ${password}`);
-
   }
   const PrivateRoute = ({ component: Component, ...rest }) => {
     const [logged] = useAuth();
@@ -50,7 +50,7 @@ export default function Login() {
         ? <Component {...props} />
         : <Redirect to='/login' />
     )} />
-  }
+  } 
   const [logged] = useAuth();
        return(           
       <div>
@@ -87,10 +87,11 @@ export default function Login() {
                 
               </form>  :
               <div>  
-                <PrivateRoute path="/secret" component={Secret} /> 
+             <Redirect to ='/win'/>              
               <Button onClick={() => logout()}Logout>
                Logout
               </Button>  
+              <PrivateRoute/>
               </div>
             }
             </Box>

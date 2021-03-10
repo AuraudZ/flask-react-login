@@ -1,7 +1,6 @@
 import React , {useEffect} from 'react'
-import {Button, Flex,Text,Link,} from '@chakra-ui/core'
-import {Center} from '@chakra-ui/react'
-import { Redirect,useHistory } from 'react-router'
+import {Button, Box,Flex, Stack,} from '@chakra-ui/core'
+import { useHistory } from 'react-router'
 
 function Home() {
    
@@ -11,17 +10,25 @@ function Home() {
       let path = `/login`; 
       history.push(path);
     }
+    const registerChange =  () => {
+      let path= `/register`;
+      history.push(path);
+    }
   
      useEffect(() => {
         fetch("/api").then(resp => resp.json()).then(resp => console.log(resp))
       }, [])
     return (
         <div>
-            <Center>
-            <Text mb="5px" padding="3">Click to got to</Text>
-             <Button color="primary" className="px-4" onClick={loginChange}   center >Login </Button>
-             </Center>
-        </div>
+           <Flex width="full" align="center" justifyContent="center">
+              <Box p={8}maxWidth="500px"borderWidth={1} borderRadius={8} boxShadow="lg">
+                <Stack spacing={8}>
+                  <Button variantColor="teal"variant="outline"type="submit"width="full"mt={1}  onClick={ loginChange} >Login</Button>
+                  <Button color="primary" className="px-4" onClick={registerChange} center variant="outline" variantColor="teal"mb={1} >Register </Button>
+                </Stack>
+             </Box>
+            </Flex>        
+            </div>
     )
 }
 export default Home

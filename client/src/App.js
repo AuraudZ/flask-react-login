@@ -1,12 +1,13 @@
 import React  from 'react';
-import { ThemeProvider,theme,ColorModeProvider, CSSReset , Text, FormHelperText} from '@chakra-ui/core';
+import { ThemeProvider,theme,ColorModeProvider, CSSReset , } from '@chakra-ui/core';
 import ThemeToggler from './components/ThemeToggler'
 import  Login  from './pages/Login.js'
-import {  BrowserRouter as Router,Switch,Route,Redirect} from "react-router-dom";
+import {BrowserRouter as Router,Switch,Route,Redirect} from "react-router-dom";
 import {useAuth} from './auth'
 import Home from './pages/Home'
 import Secret from  './pages/Secret'
 import Register  from  './pages/Register'
+import Win from './pages/Win';
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
@@ -21,10 +22,16 @@ export default function App() {
           <Route path ="/register">
             <Register/>
           </Route>
-          <Route path="/">
+         <Switch >
+          <Route path="/" exact="true" >
+              <Home/>
+          </Route>   
+        </Switch>  
+          <Route path="/win">
+            <Win/>
+          </Route>
+          <Route path='/home'>
             <Home/>
-          </Route>      
-          <Route path='home'>
           </Route>
         <PrivateRoute path="/secret" component={Secret} />    
         </Switch>

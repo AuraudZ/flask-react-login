@@ -1,10 +1,9 @@
-import react, {useEffect,useState} from 'react'
+import {useEffect,useState} from 'react'
 import {authFetch} from '../auth'
 import {Text}  from '@chakra-ui/core'
 
 function Secret() {
     const [message, setMessage] = useState('')
-  
     useEffect(() => {
       authFetch("/api/protected").then(response => {
         if (response.status === 401){
@@ -20,7 +19,7 @@ function Secret() {
     }, [])
     return (
         <Text textAlign="center" >
-            Hello  World
+           {message}
         </Text>
     )
 }

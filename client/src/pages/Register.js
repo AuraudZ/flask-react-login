@@ -1,8 +1,9 @@
+/* eslint-disable no-sequences */
 import React,{ useState } from 'react'
-import {Flex,Box,Heading,FormControl,FormLabel,Input, Button,  CircularProgress, Text} from '@chakra-ui/core';
+import {Flex,Box,Heading,FormControl,FormLabel,Input, Button, } from '@chakra-ui/core';
 // import { userLogin } from '../utils/mockApi';
 import ErrorMessage from '../components/ErrorMessage'; 
-import {login, useAuth, logout,authFetch} from "../auth"
+import {login,} from "../auth"
 import  {useHistory} from 'react-router'
 export default function Login() {
   const [username,setUsername]  = useState('');
@@ -32,10 +33,13 @@ export default function Login() {
           console.log("Please type in correct username/password")
         }
       }) }
-        const loginRedirct = () =>{ 
+      const loginRedirct = () =>{ 
             let path = `/login`; 
+            setTimeout(300)
             history.push(path);
           }
+
+      
   const handleUsernameChange = (e) => {
     setUsername(e.target.value)
   }
@@ -48,9 +52,6 @@ export default function Login() {
     //alert(`Username: ${username} & Password: ${password}`);
 
   }
-  const [logged] = useAuth();
-
-  
        return(           
       <div>
       <Flex width="full" align="center" justifyContent="center">
