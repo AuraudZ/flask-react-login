@@ -7,38 +7,45 @@ import {useAuth} from './auth'
 import Home from './pages/Home'
 import Secret from  './pages/Secret'
 import Register  from  './pages/Register'
+import AccountButton from './components/AccountButton';
 import Win from './pages/Win';
+import Main from './pages/Main.js'
 export default function App() {
   return (
+    <Router>
     <ThemeProvider theme={theme}>
-      <ColorModeProvider>
-      <Router>
-        <CSSReset />
-        <ThemeToggler />
-        <Switch>
-          <Route path="/login">
-            <Login />
-          </Route>   
-          <Route path ="/register">
-            <Register/>
+    <ColorModeProvider>
+    <CSSReset />
+    <ThemeToggler />
+    <AccountButton/>
+    <Switch>
+      <Route exact path="/login">
+        <Login />
+      </Route>   
+      <Route path ="/register">
+        <Register/>
+      </Route>
+      </Switch>
+     <Switch >
+      <Route exact path="/" >
+          <Redirect to='/home'/>
+      </Route>   
+      <Route exact path='/home'>
+        <Home/>
+      </Route>
+      </Switch>  
+      <Switch>
+      <Route exact path="/win">
+       <Win/>
+      </Route>
+        <Route path ="/main">
+          <Main/>
           </Route>
-         <Switch >
-          <Route exact path="/" >
-              <Home/>
-          </Route>   
-        </Switch>  
-          <Route path="/win">
-            <Win/>
-          </Route>
-          <Route path='/home'>
-            <Home/>
-          </Route>
-        <PrivateRoute path="/secret" component={Secret} />    
         </Switch>
-      </Router>
-      </ColorModeProvider>
-    </ThemeProvider>
- 
+      <PrivateRoute path="/secret" component={Secret} />    
+    </ColorModeProvider>
+  </ThemeProvider>
+</Router>
   );
  
   } 
@@ -51,3 +58,8 @@ export default function App() {
         : <Redirect to='/login' />
     )} />
   }
+
+//   <Router>
+//  
+
+// </Router>

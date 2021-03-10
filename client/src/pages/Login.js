@@ -1,12 +1,13 @@
 import React,{ useState } from 'react'
-import {Flex,Box,Heading,FormControl,FormLabel,Input, Button, } from '@chakra-ui/core';
+import {Flex,Box,Heading,FormControl,FormLabel,Input, Button, Stack, } from '@chakra-ui/core';
 import ErrorMessage from '../components/ErrorMessage'; 
 import {login, useAuth, logout} from "../auth"
-import { Redirect } from 'react-router';
+import { Redirect, useHistory } from 'react-router';
 export default function Login() {
   const [username,setUsername]  = useState('');
   const [password,setPassword] =  useState('')
   const [error,setError] = useState('');
+  const history = useHistory();
   const onSubmitClick = (e)=>{
     e.preventDefault()
     console.log("You pressed login")
@@ -24,13 +25,19 @@ export default function Login() {
           console.log(token)     
         }
         else if (response  =>  response.status === '401') { 
-          setError("Invalid Login Info") 
+          setError("Invalid Username or Password") 
           console.log(error)
         }
       }) }
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value)
+  }
+
+  const winRedirct = () =>{ 
+    let path = `/win`; 
+    setTimeout(3000)
+    history.push(path);
   }
   const handlePasswordChange = (e) => {
     setPassword(e.target.value)
@@ -77,10 +84,11 @@ export default function Login() {
                 
               </form>  :
               <div>  
-             <Redirect to ='/win'/>              
+                <Redirect to="/win" />      
               <Button onClick={() => logout()}Logout>
                Logout
               </Button>  
+              <Button onClick={winRedirct()} >Click To Win</Button>
               </div>
             }
             </Box>

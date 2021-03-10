@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-sequences */
 import React,{ useState } from 'react'
 import {Flex,Box,Heading,FormControl,FormLabel,Input, Button, } from '@chakra-ui/core';
@@ -21,20 +22,22 @@ export default function Login() {
       body: JSON.stringify(opts)
     }).then(r => r.json())
       .then(token => {
-        if (token.access_token){
+        if (response  =>  response.status==='201'){
           login(token)
           console.log(token)  
           let path = `/login`; 
+          setTimeout(3000)
           history.push(path); 
         }
-        else if (response  =>  response.status === '500') { 
+        else { 
           setError("User Already Created") 
+          console.log(response  =>  response.json)
           console.log(error)
         }
       }) }
       const loginRedirct = () =>{ 
             let path = `/login`; 
-            setTimeout(300)
+            setTimeout(3000)
             history.push(path);
           }
 
@@ -49,7 +52,9 @@ export default function Login() {
     event.preventDefault()
 
   }
-  const [logged] = useAuth();
+  const handleRegister= async event =>  {
+
+  }
 return(           
   <div>
     <Flex width="full" align="center" justifyContent="center">
