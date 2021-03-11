@@ -10,10 +10,12 @@ import Register  from  './pages/Register'
 import AccountButton from './components/AccountButton';
 import Win from './pages/Win';
 import Main from './pages/Main.js'
+import NavBar from './components/NavBar'
 export default function App() {
   return (
     <Router>
     <ThemeProvider theme={theme}>
+    <NavBar/>
     <ColorModeProvider>
     <CSSReset />
     <ThemeToggler />

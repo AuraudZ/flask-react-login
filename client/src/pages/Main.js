@@ -7,7 +7,7 @@ export default function Main() {
     return (
         <div>
             <Text>
-                Hello World
+                {}
             </Text>
         </div>
     )

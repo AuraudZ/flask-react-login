@@ -1,12 +1,11 @@
 import React from 'react'
 import ReactPlayer from "react-player"
-import {Center} from '@chakra-ui/react'
+import {Center,Flex,Box} from '@chakra-ui/react'
+import NavBar  from  '../components/NavBar'
 export default function Win() {
   return (
     <div>
-      <Center>
-       <ReactPlayer url="https://www.youtube.com/watch?v=dQw4w9WgXcQ" volume={100}  />
-       </Center>
+   
     </div>
   )
 }

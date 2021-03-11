@@ -1,6 +1,5 @@
 import {useState} from 'react';
 import {  Box, IconButton } from '@chakra-ui/core'
-import {PhoneIcon,SearchIcon} from '@chakra-ui/icons'
 import {useAuth}  from '../auth'
 import { useHistory } from "react-router-dom";
 export default function AccountButton() {

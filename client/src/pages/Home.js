@@ -13,10 +13,6 @@ function Home() {
       let register= `/register`;
       history.push(register);
     }
-    const mainChange = () =>  {
-      let main = `/main`
-      history.push(main)
-    }
   
      useEffect(() => {
         fetch("/api/").then(resp => resp.json()).then(resp => console.log(resp))
@@ -29,8 +25,6 @@ function Home() {
                 <Heading > Login/Register </Heading>
                   <Button variantColor="teal"variant="outline"type="submit"width="full"mt={1}  onClick={ loginChange} >Login</Button>
                   <Button color="primary" className="px-4" onClick={registerChange} center variant="outline" variantColor="teal"mb={1} >Register </Button>
-                  <Button variantColor="red"variant="outline"type="submit"width="full"mt={1}  onClick={ mainChange} >Main</Button>
-
                 </Stack>
              </Box>
             </Flex>        

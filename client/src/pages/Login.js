@@ -1,5 +1,5 @@
 import React,{ useState } from 'react'
-import {Flex,Box,Heading,FormControl,FormLabel,Input, Button, Stack, } from '@chakra-ui/core';
+import {Flex,Box,Heading,FormControl,FormLabel,Input, Button, } from '@chakra-ui/core';
 import ErrorMessage from '../components/ErrorMessage'; 
 import {login, useAuth, logout} from "../auth"
 import { Redirect, useHistory } from 'react-router';
@@ -47,7 +47,6 @@ export default function Login() {
     event.preventDefault()
     //alert(`Username: ${username} & Password: ${password}`);
   }
-   
   const [logged] = useAuth();
        return(           
       <div>
